@@ -1,0 +1,16 @@
+\BOOKMARK [0][-]{section*.1}{vivid: An R package for Variable Importance and Variable Interactions Displays for Machine Learning Models}{}% 1
+\BOOKMARK [1][-]{section.2.1}{Introduction}{section*.1}% 2
+\BOOKMARK [1][-]{section.2.2}{Example: Data and Models}{section*.1}% 3
+\BOOKMARK [1][-]{section.2.3}{Calculating VIVI}{section*.1}% 4
+\BOOKMARK [2][-]{subsection.2.3.1}{vivi function additional arguments}{section.2.3}% 5
+\BOOKMARK [2][-]{subsection.2.3.2}{Speed tests}{section.2.3}% 6
+\BOOKMARK [2][-]{subsection.2.3.3}{Alternative construction of a vivid matrix}{section.2.3}% 7
+\BOOKMARK [1][-]{section.2.4}{Heatmap of Variable Importance and Variable Interactions}{section*.1}% 8
+\BOOKMARK [1][-]{section.2.5}{Network of Variable Importance and Variable Interactions}{section*.1}% 9
+\BOOKMARK [1][-]{section.2.6}{Partial Dependence and Individual Conditional Expectation Curves}{section*.1}% 10
+\BOOKMARK [2][-]{subsection.2.6.1}{Univariate Partial Dependence Plot}{section.2.6}% 11
+\BOOKMARK [2][-]{subsection.2.6.2}{Generalized Pairs Partial Dependence Plot}{section.2.6}% 12
+\BOOKMARK [1][-]{section.2.7}{Zen Partial Dependence Plots}{section*.1}% 13
+\BOOKMARK [2][-]{subsection.2.7.1}{Zen-paths}{section.2.7}% 14
+\BOOKMARK [1][-]{section.2.8}{Summary}{section*.1}% 15
+\BOOKMARK [1][-]{section.2.8}{References}{section*.1}% 16
