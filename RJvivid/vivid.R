@@ -74,7 +74,8 @@ kbl(tab1pdf, booktabs = T, escape=F, caption=tab1caption, format="latex")|>
 #>  #   kable_styling(full_width = T) |>
 #>  #   column_spec(1, bold = T,)
 #> 
-#> DT::datatable(tab1html, caption = tab1caption, escape = FALSE)
+#> DT::datatable(tab1html, caption = tab1caption, escape = FALSE,  autoHideNavigation=TRUE,
+#>               rownames=FALSE,options = list(pageLength = nrow(tab1html)))
 
 
 ## ---- echo=F------------------------------------------------------------------
@@ -122,7 +123,9 @@ kbl(tab2pdf, booktabs = T, escape=F, caption=tab2cap, format="latex")|>
 
 
 ## ---- eval=knitr::is_html_output()--------------------------------------------
-#> DT::datatable(tab2html, caption = tab2cap, escape = FALSE)
+#> DT::datatable(tab2html, caption = tab2cap, escape = FALSE, autoHideNavigation=TRUE,
+#>               rownames=FALSE,
+#>               options = list(pageLength = nrow(tab2html)))
 
 
 ## ----rf, echo=TRUE------------------------------------------------------------
@@ -146,7 +149,7 @@ gbst <- xgboost(data = as.matrix(Boston[,1:13]),
 #> library("vivid")
 #> 
 #> set.seed(1701)
-#> viviRf <- vivi(fit = rf,
+#> viviRf2 <- vivi(fit = rf,
 #>                data = Boston,
 #>                response = "medv",
 #>                reorder = FALSE,
@@ -156,8 +159,7 @@ gbst <- xgboost(data = as.matrix(Boston[,1:13]),
 #>                nmax = 500,
 #>                class = 1,
 #>                predictFun = NULL,
-#>                numPerm = 4,
-#>                showVimpError = FALSE)
+#>                numPerm = 4)
 
 
 ## ----echo=FALSE, eval=TRUE----------------------------------------------------
