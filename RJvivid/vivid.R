@@ -8,9 +8,7 @@ knitr::opts_chunk$set(
   fig.retina=5,
   echo = FALSE,
   warning = FALSE,
-  message = FALSE,
-  cache = TRUE,
-  cache.extra = rand_seed
+  message = FALSE
 )
 
 
@@ -37,8 +35,7 @@ tab1html <- tribble(~Package, ~Description, ~VIVI, ~Measure, ~Method,
                 '<a href = "https://cran.r-project.org/web/packages/EIX/index.html">EIX</a>' , 'Contains a set of model-specific tools to determine which GBM variables are most important. Ability to create VIVI plots using lollipops, barplots, and heatmaps. Can also display dot and radar plots. Built with ggplot2. ', 'Both' , 'Specific' ,'Global',
                 '<a href = "https://cran.r-project.org/web/packages/varImp/index.html">varImp</a>' , 'Computes random forest VImps for the conditional inference random forest of the party package.', 'Vimp'  , 'Specific','Global',
                 '<a href = "https://cran.r-project.org/web/packages/bartMachine/index.html">bartMachine</a>' , 'Used to build Bayesian additive regression tree models. Ability to plot VIVI measures with uncertainty included using barplots. Also includes a suite of model diagnostic  plots and univariate PDP. Built using  base R.' , 'Both' , 'Specific'  ,'Global')
-tab1caption <- "Summary of a selection of R packages that can be used to assess the variable importance, variable interactions, or partial dependence and if these metrics are global or local and model-specific or model-agnostic. A brief description of available visualizations for evaluating model behavior is also provided. 
-For more on the varImp package see @varImpPack."
+tab1caption <- "Summary of a selection of R packages that can be used to assess the variable importance, variable interactions, or partial dependence and if these metrics are global or local and model-specific or model-agnostic. A brief description of available visualizations for evaluating model behavior is also provided."
 
 
 ## ---- echo=F------------------------------------------------------------------
@@ -65,8 +62,7 @@ kbl(tab1pdf, booktabs = T, escape=F, caption=tab1caption, format="latex")|>
   column_spec(2, width = "20em")  |> 
   column_spec(3, width = "4em") |> 
   column_spec(4, width = "4em") |> 
-  column_spec(5, width = "4em") |> 
-  add_footnote("For more on the varImp package, see @varImp", notation="alphabet")
+  column_spec(5, width = "4em")
 
 
 ## ---- eval=knitr::is_html_output()--------------------------------------------
@@ -145,25 +141,21 @@ gbst <- xgboost(data = as.matrix(Boston[,1:13]),
                 verbose = 0)
 
 
-## ---- vivirf, echo=TRUE, eval=FALSE-------------------------------------------
-#> library("vivid")
-#> 
-#> set.seed(1701)
-#> viviRf2 <- vivi(fit = rf,
-#>                data = Boston,
-#>                response = "medv",
-#>                reorder = FALSE,
-#>                normalized = FALSE,
-#>                importanceType = 'agnostic',
-#>                gridSize = 50,
-#>                nmax = 500,
-#>                class = 1,
-#>                predictFun = NULL,
-#>                numPerm = 4)
+## ---- vivirf, echo=TRUE-------------------------------------------------------
+library("vivid")
 
-
-## ----echo=FALSE, eval=TRUE----------------------------------------------------
-load("vivi.Rdata")
+set.seed(1701)
+viviRf <- vivi(fit = rf,
+               data = Boston,
+               response = "medv",
+               reorder = FALSE,
+               normalized = FALSE,
+               importanceType = 'agnostic',
+               gridSize = 50,
+               nmax = 500,
+               class = 1,
+               predictFun = NULL,
+               numPerm = 4)
 
 
 ## ---- echo=TRUE---------------------------------------------------------------
@@ -171,14 +163,14 @@ load("vivi.Rdata")
 pFun <- function(fit, data, ...) predict(fit, as.matrix(data[,1:13]))
 
 
-## ---- vivigbm, echo=TRUE, eval=FALSE------------------------------------------
-#> set.seed(1701)
-#> viviGBst <- vivi(fit = gbst,
-#>                  data = Boston,
-#>                  response = "medv",
-#>                  reorder = FALSE,
-#>                  normalized = FALSE,
-#>                  predictFun = pFun)
+## ---- vivigbm, echo=TRUE------------------------------------------------------
+set.seed(1701) 
+viviGBst <- vivi(fit = gbst,
+                 data = Boston,
+                 response = "medv",
+                 reorder = FALSE,
+                 normalized = FALSE,
+                 predictFun = pFun)
 
 
 ## ----  speedtest, echo=FALSE,   out.width = '60%', fig.cap = "Mean time over five runs, on two MacBooks, for the creation of a vivid matrix for different models. Times are highly dependent on the model fit, with NN the fastest and random forests the slowest."----
